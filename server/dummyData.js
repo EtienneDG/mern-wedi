@@ -1,8 +1,9 @@
 import Post from './models/post';
+import Guest from './models/guest';
 
 export default function () {
   Post.count().exec((err, count) => {
-    if (count > 0) {
+    if (count > 10) {
       return;
     }
 
@@ -40,6 +41,15 @@ export default function () {
     Post.create([post1, post2], (error) => {
       if (!error) {
         // console.log('ready to go....');
+      }
+    });
+
+    const guest1 = new Guest({ email: 'edg@email.com', name: 'Etienne DG' });
+    const guest2 = new Guest({ email: 'edg2@email.com', name: 'Etienne DG2' });
+
+    Guest.create([guest1, guest2], (error) => {
+      if (!error) {
+        // console.log('ready to go');
       }
     });
   });
