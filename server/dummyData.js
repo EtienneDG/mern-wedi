@@ -44,8 +44,8 @@ export default function () {
       }
     });
 
-    const guest1 = new Guest({ email: 'edg@email.com', name: 'Etienne DG' });
-    const guest2 = new Guest({ email: 'edg2@email.com', name: 'Etienne DG2' });
+    const guest1 = new Guest({ email: 'edg@email.com', name: 'Etienne DG', cuid: 'cikqgkv4q01ck7453ualdn3hd' });
+    const guest2 = new Guest({ email: 'edg2@email.com', name: 'Etienne DG2', cuid: 'cikqgkv4q01ck7453ualdn3hf' });
 
     Guest.create([guest1, guest2], (error) => {
       if (!error) {

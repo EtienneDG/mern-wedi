@@ -9,7 +9,7 @@ import sanitizeHtml from 'sanitize-html';
  * @returns void
  */
 export function getGuests(req, res) {
-  Guest.find().where('isDeleted').equals('true').sort('-dateUpdated').exec((err, guests) => {
+  Guest.find().where('isDeleted').equals(false).sort('-dateUpdated').exec((err, guests) => {
     if (err) {
       res.status(500).send(err);
     }
@@ -24,14 +24,13 @@ export function getGuests(req, res) {
  * @returns void
  */
 export function getGuest(req, res) {
-  Guest.findOne({ cuid: req.params.cuid }).exec((err, post) => {
+  Guest.findOne({ cuid: req.params.cuid }).exec((err, guest) => {
     if (err) {
       res.status(500).send(err);
     }
-    res.json({ post });
+    res.json({ guest });
   });
 }
-
 
 
 /**
@@ -41,7 +40,7 @@ export function getGuest(req, res) {
  * @returns void
  */
 export function addGuest(req, res) {
-  const newGuest = new Guest(req.body.post);
+  const newGuest = new Guest(req.body.guest);
 
   // Let's sanitize inputs
   newGuest.email = sanitizeHtml(newGuest.email);
